@@ -179,6 +179,7 @@
             justify-content: center;
             align-items: center;
             margin-top: 4px;
+            cursor: pointer;
         }
         .main__content__editor__col__plate__label {
             text-align: center;
@@ -190,6 +191,19 @@
         }
         .main__content__label {
             margin-top: 12px;
+        }
+        .main__content__editor__col__plate__menu {
+            background-color: #fff;
+            border-radius: 10px;
+            width: 200px;
+            padding: 10px;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            display: none;
+        }
+        .main__content__editor__col__plate__menu__item {
+            cursor: pointer;
         }
     </style>
 </head>
@@ -266,24 +280,66 @@
             <div class="main__content__editor">
                 <div class="main__content__editor__col">
                     <p class="main__content__editor__col__label">color</p>
-                    <div class="main__content__editor__col__plate">
-                        <p class="main__content__editor__col__plate__label">BLACK</p>
+                    <div
+                        id="editorColorSelector"
+                        class="main__content__editor__col__plate">
+                        <p
+                            id="editorColorLabel"
+                            class="main__content__editor__col__plate__label">BLACK</p>
                         <img
+                            id="editorColorIcon"
                             width="18.7px"
                             height="7.13px"
                             class="main__content__editor__col__plate__icon"
                             src="./images/arrow.svg" />
                     </div>
+                    <div
+                        id="editorColorMenu"
+                        class="main__content__editor__col__plate__menu">
+                        <p
+                            class="main__content__editor__col__plate__menu__item"
+                            onClick="selectColor('black')">BLACK</p>
+                        <p
+                            class="main__content__editor__col__plate__menu__item"
+                            onClick="selectColor('orange')">ORANGE</p>
+                        <p
+                            class="main__content__editor__col__plate__menu__item"
+                            onClick="selectColor('yellow')">YELLOW</p>
+                        <p
+                            class="main__content__editor__col__plate__menu__item"
+                            onClick="selectColor('pink')">PINK</p>
+                    </div>
                 </div>
                 <div class="main__content__editor__col">
                     <p class="main__content__editor__col__label">size</p>
-                    <div class="main__content__editor__col__plate">
-                        <p class="main__content__editor__col__plate__label">2</p>
+                    <div
+                        id="editorSizeSelector"
+                        class="main__content__editor__col__plate">
+                        <p
+                            id="editorSizeLabel"
+                            class="main__content__editor__col__plate__label">2</p>
                         <img
+                            id="editorSizeIcon"
                             width="18.7px"
                             height="7.13px"
                             class="main__content__editor__col__plate__icon"
                             src="./images/arrow.svg" />
+                    </div>
+                    <div
+                        id="editorSizeMenu"
+                        class="main__content__editor__col__plate__menu">
+                        <p
+                            class="main__content__editor__col__plate__menu__item"
+                            onClick="selectSize(2)">2</p>
+                        <p
+                            class="main__content__editor__col__plate__menu__item"
+                            onClick="selectSize(3)">3</p>
+                        <p
+                            class="main__content__editor__col__plate__menu__item"
+                            onClick="selectSize(4)">4</p>
+                        <p
+                            class="main__content__editor__col__plate__menu__item"
+                            onClick="selectSize(5)">5</p>
                     </div>
                 </div>
             </div>
@@ -296,11 +352,36 @@
         function buyNow() {
             window.open('https://youtube.com', '_blank')
         }
+        function selectColor(color) {
+            editorColorLabel.textContent = color.toUpperCase()
+            editorSizeMenu.style.display = 'none'
+            editorColorMenu.style.display = 'none'
+
+            blackPreview.style.opacity = color === 'black' ? 0.5 : 1
+            const source = `${blackPreview.src.split('black_preview.png')[0]}${color}.png`
+            mainContentImg.src = source
+            orangePreview.style.opacity = color === 'orange' ? 0.5 : 1
+            pinkPreview.style.opacity = color === 'pink' ? 0.5 : 1
+            yellowPreview.style.opacity = color === 'yellow' ? 0.5 : 1
+        }
+        function selectSize(size) {
+            editorSizeLabel.textContent = size
+            editorSizeMenu.style.display = 'none'
+            editorColorMenu.style.display = 'none'
+        }
         const blackPreview = document.querySelector('#blackPreview')
         const orangePreview = document.querySelector('#orangePreview')
         const pinkPreview = document.querySelector('#pinkPreview')
         const yellowPreview = document.querySelector('#yellowPreview')
         const mainContentImg = document.querySelector('#mainContentImg')
+        const editorColorSelector = document.querySelector('#editorColorSelector')
+        const editorSizeSelector = document.querySelector('#editorSizeSelector')
+        const editorColorMenu = document.querySelector('#editorColorMenu')
+        const editorSizeMenu = document.querySelector('#editorSizeMenu')
+        const editorColorLabel = document.querySelector('#editorColorLabel')
+        const editorSizeLabel = document.querySelector('#editorSizeLabel')
+        const editorColorIcon = document.querySelector('#editorColorIcon')
+        const editorSizeIcon = document.querySelector('#editorSizeIcon')
         blackPreview.addEventListener('click', () => {
             blackPreview.style.opacity = 0.5
             const source = blackPreview.src.split('_preview.png')[0] + '.png'
@@ -308,6 +389,7 @@
             orangePreview.style.opacity = 1
             pinkPreview.style.opacity = 1
             yellowPreview.style.opacity = 1
+            editorColorLabel.textContent = 'BLACK'
         })
         orangePreview.addEventListener('click', () => {
             orangePreview.style.opacity = 0.5
@@ -316,6 +398,7 @@
             blackPreview.style.opacity = 1
             pinkPreview.style.opacity = 1
             yellowPreview.style.opacity = 1
+            editorColorLabel.textContent = 'ORANGE'
         })
         pinkPreview.addEventListener('click', () => {
             pinkPreview.style.opacity = 0.5
@@ -324,6 +407,7 @@
             blackPreview.style.opacity = 1
             orangePreview.style.opacity = 1
             yellowPreview.style.opacity = 1
+            editorColorLabel.textContent = 'PINK'
         })
         yellowPreview.addEventListener('click', () => {
             yellowPreview.style.opacity = 0.5
@@ -332,6 +416,35 @@
             blackPreview.style.opacity = 1
             orangePreview.style.opacity = 1
             pinkPreview.style.opacity = 1
+            editorColorLabel.textContent = 'YELLOW'
+        })
+        editorColorSelector.addEventListener('click', (e) => {
+            if (editorColorMenu.style.display === 'none' && editorSizeMenu.style.display === 'none') {
+                editorColorMenu.style.display = 'block'
+                editorColorMenu.style.left = `${e.pageX}px`
+                editorColorMenu.style.top = `${e.pageY}px`
+                editorSizeMenu.style.display = 'none'
+                editorColorIcon.style.transform = 'scaleY(-1)'
+            } else {
+                editorSizeMenu.style.display = 'none'
+                editorColorMenu.style.display = 'none'
+                editorColorIcon.style.transform = 'scaleY(1)'
+                editorSizeIcon.style.transform = 'scaleY(1)'
+            }
+        })
+        editorSizeSelector.addEventListener('click', (e) => {
+            if (editorColorMenu.style.display === 'none' && editorSizeMenu.style.display === 'none') {
+                editorSizeMenu.style.display = 'block'
+                editorSizeMenu.style.left = `${e.pageX}px`
+                editorSizeMenu.style.top = `${e.pageY}px`
+                editorColorMenu.style.display = 'none'
+                editorSizeIcon.style.transform = 'scaleY(-1)'
+            } else {
+                editorSizeMenu.style.display = 'none'
+                editorColorMenu.style.display = 'none'
+                editorColorIcon.style.transform = 'scaleY(1)'
+                editorSizeIcon.style.transform = 'scaleY(1)'
+            }
         })
     </script>
 </body>
