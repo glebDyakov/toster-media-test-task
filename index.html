@@ -150,6 +150,39 @@
             font-family: Gotham-pro;
             margin-top: 8.11px;
         }
+
+        .main__content__editor {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .main__content__editor__col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .main__content__editor__col__label {
+            font-size: 10px;
+            font-weight: 400;
+        }
+        .main__content__editor__col__plate {
+            width: 170px;
+            height: 50px;
+            background-color: #fff;
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 4px;
+        }
+        .main__content__editor__col__plate__label {
+            text-align: center;
+            margin-left: 29px;
+            font-size: 21.69px;
+            font-family: Gotham-pro;
+            font-weight: 700;
+            width: 111px;
+        }
     </style>
 </head>
 <body>
@@ -216,6 +249,30 @@
                     <img src="./images/star.svg" />
                 </div>
                 <p class="main__content__rating__label">(10)</p>
+            </div>
+            <div class="main__content__editor">
+                <div class="main__content__editor__col">
+                    <p class="main__content__editor__col__label">color</p>
+                    <div class="main__content__editor__col__plate">
+                        <p class="main__content__editor__col__plate__label">BLACK</p>
+                        <img
+                            width="18.7px"
+                            height="7.13px"
+                            class="main__content__editor__col__plate__icon"
+                            src="./images/arrow.svg" />
+                    </div>
+                </div>
+                <div class="main__content__editor__col">
+                    <p class="main__content__editor__col__label">size</p>
+                    <div class="main__content__editor__col__plate">
+                        <p class="main__content__editor__col__plate__label">2</p>
+                        <img
+                            width="18.7px"
+                            height="7.13px"
+                            class="main__content__editor__col__plate__icon"
+                            src="./images/arrow.svg" />
+                    </div>
+                </div>
             </div>
             <button class="main__content__btn">BUY NOW</button>
         </div>
