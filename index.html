@@ -55,6 +55,7 @@
             font-size: 30px;
             font-family: Gotham-pro;
             margin-top: 20px;
+            cursor: pointer;
         }
         .main__content__rating {
             display: flex;
@@ -278,8 +279,15 @@
                     </div>
                 </div>
             </div>
-            <button class="main__content__btn">BUY NOW</button>
+            <button
+                class="main__content__btn"
+                onclick="buyNow()">BUY NOW</button>
         </div>
     </div>
+    <script>
+        function buyNow() {
+            window.open('https://youtube.com', '_blank')
+        }
+    </script>
 </body>
 </html>
