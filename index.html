@@ -63,6 +63,21 @@
         .main__content__rating__label {
             margin-left: 10px;
         }
+        .main__content__previews {
+            display: flex;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .main__content__preview:not(:first-child) {
+            margin-left: 6px;
+            margin-right: 6px;
+        }
+        .main__content__preview:first-child {
+            margin-right: 6px;
+        }
+        .main__content__img {
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -77,6 +92,29 @@
     </div>
     <div class="main">
         <div class="main__content">
+            <div></div>
+            <img
+                src="./images/black.png"
+                height="232px"
+                class="main__content__img" />
+            <div class="main__content__previews">
+                <img
+                    src="./images/black_preview.png"
+                    height="66px"
+                    class="main__content__preview" />
+                <img
+                    src="./images/orange_preview.png"
+                    height="66px"
+                    class="main__content__preview" />
+                <img
+                    src="./images/pink_preview.png"
+                    height="66px"
+                    class="main__content__preview" />
+                <img
+                    src="./images/yellow_preview.png"
+                    height="66px"
+                    class="main__content__preview" />
+            </div>
             <p><b>Fast Delivery:</b> 2-4 days from SA 🇿🇦</p>
             <p><b>In Stock:</b> Shipping from Johannesburg 🇿🇦</p>
             <div class="main__content__rating">
