@@ -70,6 +70,9 @@
             margin-top: 20px;
             margin-bottom: 20px;
         }
+        .main__content__preview {
+            cursor: pointer;
+        }
         .main__content__preview:not(:first-child) {
             margin-left: 6px;
             margin-right: 6px;
@@ -222,23 +225,28 @@
             </div>
             <p class="main__content__title">Orthopedic Slippers</p>
             <img
+                id="mainContentImg"
                 src="./images/black.png"
                 height="232px"
                 class="main__content__img" />
             <div class="main__content__previews">
                 <img
+                    id="blackPreview"
                     src="./images/black_preview.png"
                     height="66px"
                     class="main__content__preview" />
                 <img
+                    id="orangePreview"
                     src="./images/orange_preview.png"
                     height="66px"
                     class="main__content__preview" />
                 <img
+                    id="pinkPreview"
                     src="./images/pink_preview.png"
                     height="66px"
                     class="main__content__preview" />
                 <img
+                    id="yellowPreview"
                     src="./images/yellow_preview.png"
                     height="66px"
                     class="main__content__preview" />
@@ -288,6 +296,43 @@
         function buyNow() {
             window.open('https://youtube.com', '_blank')
         }
+        const blackPreview = document.querySelector('#blackPreview')
+        const orangePreview = document.querySelector('#orangePreview')
+        const pinkPreview = document.querySelector('#pinkPreview')
+        const yellowPreview = document.querySelector('#yellowPreview')
+        const mainContentImg = document.querySelector('#mainContentImg')
+        blackPreview.addEventListener('click', () => {
+            blackPreview.style.opacity = 0.5
+            const source = blackPreview.src.split('_preview.png')[0] + '.png'
+            mainContentImg.src = source 
+            orangePreview.style.opacity = 1
+            pinkPreview.style.opacity = 1
+            yellowPreview.style.opacity = 1
+        })
+        orangePreview.addEventListener('click', () => {
+            orangePreview.style.opacity = 0.5
+            const source = orangePreview.src.split('_preview.png')[0] + '.png'
+            mainContentImg.src = source 
+            blackPreview.style.opacity = 1
+            pinkPreview.style.opacity = 1
+            yellowPreview.style.opacity = 1
+        })
+        pinkPreview.addEventListener('click', () => {
+            pinkPreview.style.opacity = 0.5
+            const source = pinkPreview.src.split('_preview.png')[0] + '.png'
+            mainContentImg.src = source 
+            blackPreview.style.opacity = 1
+            orangePreview.style.opacity = 1
+            yellowPreview.style.opacity = 1
+        })
+        yellowPreview.addEventListener('click', () => {
+            yellowPreview.style.opacity = 0.5
+            const source = `${yellowPreview.src.split('_preview.png')[0]}.png`
+            mainContentImg.src = source
+            blackPreview.style.opacity = 1
+            orangePreview.style.opacity = 1
+            pinkPreview.style.opacity = 1
+        })
     </script>
 </body>
 </html>
