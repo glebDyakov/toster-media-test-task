@@ -40,7 +40,7 @@
             margin-top: 10px;
         }
         .main__content {
-            padding: 0px 17px 0px 17px;
+            padding: 11px 17px 41.38px 17px;
             background: #F0F0F0;
             width: calc(100% - 17px * 2);
             height: calc(100vh - 92px - 33px);
@@ -79,11 +79,19 @@
             margin-top: 20px;
         }
         .main__content__title {
+            margin-top: 20px;
             color: #2C2B31;
             font-size: 19px;
             font-family: Gotham-pro;
             font-weight: 700;
             text-transform: uppercase;
+        }
+        .main__content__header {
+            display: flex;
+            justify-content: space-between;
+        }
+        .main__content__header__aside {
+            color: #37D997;
         }
     </style>
 </head>
@@ -99,7 +107,14 @@
     </div>
     <div class="main">
         <div class="main__content">
-            <div></div>
+            <div class="main__content__header">
+                <p>Excellent 4.8/5</p>
+                <img
+                    src="./images/trustpilot.svg"
+                    height="17.68px"
+                    class="main__content__header__img" />
+                <p class="main__content__header__aside">best selling</p>
+            </div>
             <p class="main__content__title">Orthopedic Slippers</p>
             <img
                 src="./images/black.png"
