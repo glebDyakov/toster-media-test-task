@@ -191,11 +191,12 @@
         }
         .main__content__label {
             margin-top: 12px;
+            font-family: Gotham-pro;
         }
         .main__content__editor__col__plate__menu {
             background-color: #fff;
             border-radius: 10px;
-            width: 200px;
+            width: calc(170px - 10px * 2);
             padding: 10px;
             position: absolute;
             top: 0px;
@@ -204,6 +205,10 @@
         }
         .main__content__editor__col__plate__menu__item {
             cursor: pointer;
+            font-family: Gotham-pro;
+            font-weight: 400;
+            font-size: 14px;
+            padding: 10px 0px;
         }
     </style>
 </head>
@@ -369,6 +374,12 @@
             editorSizeMenu.style.display = 'none'
             editorColorMenu.style.display = 'none'
         }
+        function isMenusHidden() {
+            const isColorMenuHidden = editorColorMenu.style.display === 'none'
+            const isSizeMenuHidden = editorSizeMenu.style.display === 'none'
+            const isHidden = isColorMenuHidden && isSizeMenuHidden
+            return isHidden
+        }
         const blackPreview = document.querySelector('#blackPreview')
         const orangePreview = document.querySelector('#orangePreview')
         const pinkPreview = document.querySelector('#pinkPreview')
@@ -382,6 +393,7 @@
         const editorSizeLabel = document.querySelector('#editorSizeLabel')
         const editorColorIcon = document.querySelector('#editorColorIcon')
         const editorSizeIcon = document.querySelector('#editorSizeIcon')
+        const offerAsideSubtitle = document.querySelector('.offer__aside__subtitle')
         blackPreview.addEventListener('click', () => {
             blackPreview.style.opacity = 0.5
             const source = blackPreview.src.split('_preview.png')[0] + '.png'
@@ -419,10 +431,10 @@
             editorColorLabel.textContent = 'YELLOW'
         })
         editorColorSelector.addEventListener('click', (e) => {
-            if (editorColorMenu.style.display === 'none' && editorSizeMenu.style.display === 'none') {
+            if (isMenusHidden()) {
                 editorColorMenu.style.display = 'block'
-                editorColorMenu.style.left = `${e.pageX}px`
-                editorColorMenu.style.top = `${e.pageY}px`
+                editorColorMenu.style.left = `${editorColorSelector.getBoundingClientRect().left}px`
+                editorColorMenu.style.top = `${window.scrollY + editorColorSelector.getBoundingClientRect().top + editorColorSelector.getBoundingClientRect().height / 1.5}px`
                 editorSizeMenu.style.display = 'none'
                 editorColorIcon.style.transform = 'scaleY(-1)'
             } else {
@@ -433,10 +445,10 @@
             }
         })
         editorSizeSelector.addEventListener('click', (e) => {
-            if (editorColorMenu.style.display === 'none' && editorSizeMenu.style.display === 'none') {
+            if (isMenusHidden()) {
                 editorSizeMenu.style.display = 'block'
-                editorSizeMenu.style.left = `${e.pageX}px`
-                editorSizeMenu.style.top = `${e.pageY}px`
+                editorSizeMenu.style.left = `${editorSizeSelector.getBoundingClientRect().left}px`
+                editorSizeMenu.style.top = `${window.scrollY + editorSizeSelector.getBoundingClientRect().top + editorSizeSelector.getBoundingClientRect().height / 1.5}px`
                 editorColorMenu.style.display = 'none'
                 editorSizeIcon.style.transform = 'scaleY(-1)'
             } else {
@@ -446,6 +458,18 @@
                 editorSizeIcon.style.transform = 'scaleY(1)'
             }
         })
+        // 04:51:16
+        let totalSeconds = 17476
+        let intervalId = setInterval(function() {
+            let hours = Math.floor(totalSeconds / 3600)
+            let minutes = Math.floor((totalSeconds % 3600) / 60)
+            let seconds = totalSeconds % 60
+            totalSeconds--
+            offerAsideSubtitle.textContent = `${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`
+            if(totalSeconds < 0) {
+                clearInterval(intervalId)
+            }
+        }, 1000)
     </script>
 </body>
 </html>
